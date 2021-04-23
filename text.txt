@@ -1,0 +1,7 @@
+    <select name="size" class="form-control" required>
+            <option value="XS"<?php if($prod_details['size']=='XS') echo 'selected'?>>XS</option>
+            <option value="S" <?php if($prod_details['size']=='S') echo 'selected'?>>S</option>
+            <option value="M" <?php if($prod_details['size']=='M') echo 'selected'?>>M</option>
+            <option value="L" <?php if($prod_details['size']=='L') echo 'selected'?>>L</option>
+            <option value="XL" <?php if($prod_details['size']=='XL') echo 'selected'?>>XL</option>
+          </select>

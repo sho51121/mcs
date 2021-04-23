@@ -1,0 +1,14 @@
+*{
+  color:black;
+}
+
+header{
+  margin-top:50px;
+height:100vh;
+background-image: url("../main_img/main.jpg");
+background-size:cover;
+}
+.stylephoto{
+  float:center;
+  margin-left: 35px;
+}
