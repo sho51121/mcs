@@ -1,18 +1,14 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="../views/main.php">MCS</a>
+<?php
+$subcat_men_list = $prod_obj->getSubCatMen();
+$subcat_women_list = $prod_obj->getSubCatWomen();
+$subcat_kids_list = $prod_obj->getSubCatKids();
+$count_cart = $cart->countCart($_SESSION['id']);
+?>
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-4">
+  <a class="navbar-brand font-weight-bold" href="../views/main.php">MCS</a>
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="men.php">MEN</a>
-      </li> -->
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="women.php">WOMEN</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="kids.php">KIDS</a>
-      </li> -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="main.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MEN
@@ -53,8 +49,9 @@
   </div>
   <div class="ml-auto" id="navbarNav">
     <ul class="navbar-nav">
+      <li class="nav-item"><a href="../views/cart.php" class="nav-link"><i class="fas fa-shopping-cart"><span class="text-danger"><?=$count_cart['count(*)']?></span></i></a></li>
       <li class="nav-item"><a href="../actions/logout.php" class="nav-link"><?=$_SESSION['username']?></a></li>
-      <li class="nav-item"><a href="../actions/logout.php" class="nav-link">Log Out</a></li>
+      <li class="nav-item"><a href="../actions/logout.php" class="nav-link"><i class="fas fa-user-times"></i></a></li>
     </ul>
   </div>
 </nav>

@@ -26,6 +26,7 @@ include "../views/admin_navbar.php";
     <th>Last Name</th>
     <th>Username</th>
     <th>Email</th>
+    <th>Address</th>
     <th>Contact</th>
     <th></th>
     <th></th>
@@ -44,6 +45,7 @@ include "../views/admin_navbar.php";
       <td><?=$customer['last_name']?></td>
       <td><?=$customer['username']?></td>
       <td><?=$customer['email']?></td>
+      <td><?=$customer['address']?></td>
       <td><?=$customer['contact']?></td>
       <td><a href="../views/editCustomer.php?customer_id=<?=$customer['id']?>" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a></td>
       <td><a href="../actions/deleteCustomer.php?customer_id=<?=$customer['id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>

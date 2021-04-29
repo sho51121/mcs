@@ -2,8 +2,8 @@
 require_once "../classes/customer.php";
 require_once "../classes/product.php";
 $product_obj = new Product;
-$product = new Product;
-$prod_details = $product->getProduct($_GET['prod_id']);
+// $product = new Product;
+$prod_details = $product_obj->getProduct($_GET['prod_id']);
 print_r($prod_details);
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,9 @@ print_r($prod_details);
           <input type="text" name="product_name" placeholder="product_name" class="form-control" value="<?=$prod_details['name']?>" required>
           <input type="number" name="product_price" placeholder="product_price" class="form-control" value="<?=$prod_details['price']?>" required>
           <input type="text" name="product_color" placeholder="product_color" class="form-control" value="<?=$prod_details['color']?>" required>
-          <input type="checkbox" id="XS" name="size[]" value="XS">
+          Size:<?=$prod_details['size'];?>
+<!--           
+          <input type="checkbox" id="XS" name="size[]" value="XS" disabled>
           <label for="XS">XS</label>
           <input type="checkbox" id="S" name="size[]" value="S">
           <label for="S">S</label>
@@ -36,7 +38,7 @@ print_r($prod_details);
           <input type="checkbox" id="L" name="size[]" value="L">
           <label for="L">L</label>
           <input type="checkbox" id="XL" name="size[]" value="XL">
-          <label for="XL">XL</label>
+          <label for="XL">XL</label> -->
       
           <!-- <input type="text" name="product_size" placeholder="product_size" class="form-control" value="" required> -->
           <select name="cat_id" class="form-control" required> 

@@ -38,7 +38,7 @@ class Product extends Database{
       }
       $destination ="../product_img/".basename($image_name);
       if(move_uploaded_file($tmp_name,$destination)){
-        header("location: ../views/admin.php");
+        header("location: ../views/product.php");
         exit;
       }else{
         die("Error".$this->conn->error);
@@ -47,7 +47,7 @@ class Product extends Database{
   }
 
   public function getProducts(){
-    $sql="SELECT products.id,`name`,price,color,size,photo,cat_name,subcat_name FROM products INNER JOIN categories ON products.category_id = categories.id INNER JOIN sizes ON products.id = sizes.product_id";
+    $sql="SELECT products.id,`name`,price,color,size,sizes.id AS size_id ,photo,cat_name,subcat_name FROM products INNER JOIN categories ON products.category_id = categories.id INNER JOIN sizes ON products.id = sizes.product_id";
     if($result = $this->conn->query($sql)){
       return $result;
     }else{
@@ -117,8 +117,7 @@ class Product extends Database{
   public function deleteProduct($prod_id){
     $sql="DELETE FROM products  WHERE id = '$prod_id'";
     if($this->conn->query($sql)){
-      header("location: ../views/product.php");
-      exit;
+      $this->deleteSize($prod_id);
     }else{
       die("Error".$this->conn->error);
     }
@@ -151,7 +150,7 @@ class Product extends Database{
   }
 
   public function getProductsMen($subcat){
-    $sql="SELECT * FROM products INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Men' AND subcat_name='$subcat'";
+    $sql="SELECT *,products.id AS prod_id FROM products INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Men' AND subcat_name='$subcat'";
 
     if($result = $this->conn->query($sql)){
       return $result;
@@ -161,7 +160,7 @@ class Product extends Database{
   }
 
   public function getProductsWomen($subcat){
-    $sql="SELECT * FROM products INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Women' AND subcat_name='$subcat'";
+    $sql="SELECT *,products.id AS prod_id FROM products  INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Women' AND subcat_name='$subcat'";
 
     if($result = $this->conn->query($sql)){
       return $result;
@@ -171,7 +170,7 @@ class Product extends Database{
   }
 
   public function getProductsKids($subcat){
-    $sql="SELECT * FROM products INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Kids' AND subcat_name='$subcat'";
+    $sql="SELECT *,products.id AS prod_id FROM products INNER JOIN categories ON products.category_id=categories.id WHERE cat_name='Kids' AND subcat_name='$subcat'";
 
     if($result = $this->conn->query($sql)){
       return $result;
@@ -180,7 +179,7 @@ class Product extends Database{
     }
   }
 
-  public function getItem(){
+  public function getItem($prod_id){
     $sql="SELECT * FROM products INNER JOIN sizes ON products.id = sizes.product_id WHERE products.id='$prod_id'";
     if($result=$this->conn->query($sql)){
       return $result->fetch_assoc();
@@ -188,7 +187,25 @@ class Product extends Database{
       die("Error get item".$this->conn->error);
     }
   }
+
+  public function getSizes($prod_id){
+    $sql="SELECT * FROM sizes WHERE product_id='$prod_id'";
+    if($result=$this->conn->query($sql)){
+      return $result;
+    }else{
+      die("Error get size".$this->conn->error);
+    }
+  }
   
+  public function deleteSize($prod_id){
+    $sql="DELETE FROM sizes  WHERE product_id = '$prod_id'";
+    if($this->conn->query($sql)){
+      header("location: ../views/product.php");
+      exit;
+    }else{
+      die("Error".$this->conn->error);
+    }
+  }
 
 }
 ?>

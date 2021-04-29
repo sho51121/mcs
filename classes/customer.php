@@ -18,7 +18,7 @@ class Customer extends Database{
 
   public function createLogin($username,$password){
 
-    $sql="SELECT username,`password` 
+    $sql="SELECT id,username,`password` 
           FROM customers 
           WHERE username='$username'";
 
@@ -31,7 +31,7 @@ class Customer extends Database{
           $_SESSION['username'] = $customer_detail['username'];
 
             if($customer_detail['username'] == 'sho5'){
-              header("location: ../views/admin.php");
+              header("location: ../views/product.php");
               exit;
             }else{
               header("location: ../views/main.php");
@@ -47,7 +47,7 @@ class Customer extends Database{
 
   public function getCustomerList(){
 
-    $sql="SELECT id,first_name,last_name,username,`password`,email,contact FROM customers";
+    $sql="SELECT id,first_name,last_name,username,`password`,email,`address`,contact FROM customers";
 
     
       if($result = $this->conn->query($sql)){
@@ -95,6 +95,8 @@ class Customer extends Database{
       die("Error getting".$this->conn->error);
     }
   }
+
+  
 }
 
 ?>

@@ -91,7 +91,7 @@ $product_obj = new Product;
 
 $product_list = $product_obj->getProducts();
 while($product = $product_list->fetch_assoc()){
-
+// print_r($product);
   ?>
     <tr>
       <td><?=$product['id']?></td>
@@ -102,8 +102,8 @@ while($product = $product_list->fetch_assoc()){
       <td><?=$product['size']?></td>
       <td><?=$product['cat_name']?></td>
       <td><?=$product['subcat_name']?></td>
-      <td><a href="../views/editProduct.php?prod_id=<?=$product['id']?>" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a></td>
-      <td><a href="../actions/deleteProduct.php?prod_id=<?=$product['id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+      <td><a href="../views/editProduct.php?prod_id=<?=$product['id']?>&size_id=<?=$product['size_id']?>" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a></td>
+      <td><a href="../actions/deleteProduct.php?prod_id=<?=$product['id']?>&size_id=<?=$product['id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
 <?php
 }
